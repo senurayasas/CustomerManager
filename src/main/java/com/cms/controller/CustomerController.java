@@ -123,6 +123,7 @@ public class CustomerController {
 
     private void testingGit(){
         System.out.printf("I'm trying check few scenarios");
+        System.out.println("second one trying to add");
     }
 
     private void MainBranchEvolve(){
