@@ -120,4 +120,8 @@ public class CustomerController {
     public List<Department> populateRoster() {
         return Arrays.asList(Department.values());
     }
+
+    private void testingGit(){
+        System.out.printf("I'm trying check few scenarios");
+    }
 }
