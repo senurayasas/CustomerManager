@@ -21,15 +21,15 @@ import java.util.List;
 @RequestMapping("/customers")
 public class CustomerController {
 
-    @Autowired
-    private CustomerService customerService;
-
     private static final String UPDATE_SUCCESS_MESSAGE = "User %s %s updated successfully!";
     private static final String ADD_SUCCESS_MESSAGE = "User %s %s added successfully!";
     private static final String DELETE_SUCCESS_MESSAGE = "User %s %s deleted successfully!";
+    @Autowired
+    private CustomerService customerService;
 
     /**
      * View all customers
+     *
      * @param model
      * @return
      */
@@ -43,6 +43,7 @@ public class CustomerController {
 
     /**
      * Show add customer view
+     *
      * @param model
      * @return
      */
@@ -54,13 +55,15 @@ public class CustomerController {
 
     /**
      * Create New Customer
+     *
      * @param model
      * @param customer
      * @param bindingResult
      * @return
      */
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String saveNewCustomer(Model model, @Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
+    public String saveNewCustomer(Model model, @Valid @ModelAttribute("customer") Customer customer, BindingResult
+            bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "addCustomer";
@@ -73,6 +76,7 @@ public class CustomerController {
 
     /**
      * Show an existing customer
+     *
      * @param id
      * @param model
      * @return
@@ -85,33 +89,39 @@ public class CustomerController {
 
     /**
      * Update customer
+     *
      * @param model
      * @param customer
      * @param bindingResult
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public String updateCustomer(Model model, @Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
+    public String updateCustomer(Model model, @Valid @ModelAttribute("customer") Customer customer, BindingResult
+            bindingResult) {
         if (bindingResult.hasErrors()) {
             return "editCustomer";
         }
         customerService.saveCustomer(customer);
         model.addAttribute("customer", customer);
-        model.addAttribute("msg", String.format(UPDATE_SUCCESS_MESSAGE, customer.getFirstName(), customer.getLastName()));
+        model.addAttribute("msg", String.format(UPDATE_SUCCESS_MESSAGE, customer.getFirstName(), customer.getLastName
+                ()));
         return "editCustomer";
     }
 
 
     /**
      * Delete customer
+     *
      * @param model
      * @param customer
      * @param redirectAttributes
      * @return
      */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String deleteCustomer(Model model, @ModelAttribute("customer") Customer customer, final RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("msg", String.format(DELETE_SUCCESS_MESSAGE, customer.getFirstName(), customer.getLastName()));
+    public String deleteCustomer(Model model, @ModelAttribute("customer") Customer customer, final RedirectAttributes
+            redirectAttributes) {
+        redirectAttributes.addFlashAttribute("msg", String.format(DELETE_SUCCESS_MESSAGE, customer.getFirstName(),
+                customer.getLastName()));
         customerService.deleteCustomer(customer.getId());
         return "redirect:";
     }
@@ -121,12 +131,11 @@ public class CustomerController {
         return Arrays.asList(Department.values());
     }
 
-    private void testingGit(){
+    private void testingGit() {
         System.out.printf("I'm trying check few scenarios");
-        System.out.println("second one trying to add");
     }
 
-    private void MainBranchEvolve(){
+    private void MainBranchEvolve() {
 
     }
 }
